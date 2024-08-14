@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { schema } from '../schema/schema'
+import { schema } from '../../schema/schema'
 
 const steps = [
   { label: 'სახელი:', name: 'name', isPassword: false },
