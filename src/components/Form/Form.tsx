@@ -2,6 +2,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { schema } from '../../schema/schema'
+import ProgressTracker from '../ProgressTracker'
 
 const steps = [
   { label: 'სახელი:', name: 'name', isPassword: false },
@@ -23,6 +24,8 @@ const Form = () => {
   return (
     <FormProvider {...methods}>
       <div className="sm:w-90 md:w-[70vw] lg:w-[600px] mx-auto  p-4 bg-white border border-white rounded-lg shadow-sm my-12">
+        <ProgressTracker step={1} />
+
         <form
           onSubmit={(e) => e.preventDefault()}
           className="mt-6 min-h-[150px]"
