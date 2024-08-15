@@ -1,6 +1,7 @@
-import Form from './components/Form'
+// import Form from './components/Form'
 import Header from './components/Header'
 import Introduction from './components/Introduction'
+import SuccessMessage from './components/SuccessMessage'
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Header />
       {/* <Form /> */}
       <Introduction />
+      <SuccessMessage email="email" name="name" />
     </div>
   )
 }
