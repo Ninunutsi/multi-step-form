@@ -20,15 +20,13 @@ const Form = () => {
     defaultValues: { email: '', password: '', name: '' },
     resolver: zodResolver(schema),
   })
-  const {
-    formState: { errors },
-  } = methods
+
   const step = useFormStore((state) => state.step)
   if (step == 0) return <Introduction />
   return (
     <FormProvider {...methods}>
       <div className="sm:w-90 md:w-[70vw] lg:w-[600px] mx-auto  p-4 bg-white border border-white rounded-lg shadow-sm my-12">
-        <ProgressTracker step={1} />
+        <ProgressTracker step={step} />
         <form
           onSubmit={(e) => e.preventDefault()}
           className="mt-6 min-h-[150px]"
