@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
 import PasswordInput from '../Password'
 import Rules from '../Rules'
-import FormNavigation from '../FormNavigation'
 import { FormStepProps } from '../../types'
 
 // This component is used within a form and has different behavior when the input type is "password".
@@ -13,7 +12,6 @@ import { FormStepProps } from '../../types'
 const FormStep: React.FC<FormStepProps> = ({
   label,
   nameFormStep,
-  isLastStep,
   step,
   password,
 }) => {

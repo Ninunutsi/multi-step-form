@@ -1,9 +1,9 @@
-import { motion } from "framer-motion";
-import React from "react";
+import { motion } from 'framer-motion'
+import React from 'react'
 
 interface AnimatedWrapperProps {
-  children: React.ReactNode;
-  animationKey: string;
+  children: React.ReactNode
+  animationKey: string
 }
 
 const AnimatedWrapper: React.FC<AnimatedWrapperProps> = ({
@@ -15,11 +15,11 @@ const AnimatedWrapper: React.FC<AnimatedWrapperProps> = ({
       key={animationKey}
       initial={{ y: -30, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
     >
       {children}
     </motion.div>
-  );
-};
+  )
+}
 
-export default AnimatedWrapper;
+export default AnimatedWrapper

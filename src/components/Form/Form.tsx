@@ -24,7 +24,6 @@ const Form = () => {
   const { getValues } = methods
 
   const step = useFormStore((state) => state.step)
-  const isLastStep = step === steps.length
 
   if (step === FormSteps.Introduction) return <Introduction />
   return (
