@@ -1,50 +1,77 @@
-# React + TypeScript + Vite
+## Installation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Clone the repository (you need to have Git installed).
 
-Currently, two official plugins are available:
+    git clone https://github.com/Ninunutsi/multi-step-form.git
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Install dependencies of the project.
 
-## Expanding the ESLint configuration
+    npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Run the project.
 
-- Configure the top-level `parserOptions` property like this:
+    npm run dev
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Live Deploy:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+https://multi-step-form-eight-black.vercel.app/
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+ლაივ ვერსია დაჰოსტილია ვერსელზე.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Infinite Scroll Gallery with Unsplash API
+
+გამოყონებულია:
+
+    "@hookform/resolvers": "^3.9.0",
+    "framer-motion": "^11.3.27",
+    "react-hook-form": "^7.52.2",
+    "zod": "^3.23.8",
+    "zustand": "^4.5.5"
+    "tailwindcss": "^3.4.10",
+    "husky": "^9.1.4",
+    "prettier": "^3.3.3",
+    "eslint": "^9.9.0",
+
+@hookform/resolvers - ფორმის ვალიდაციისთვის
+
+framer-motion" - ანიმაციისთვის
+
+react-hook-form - ფორმის შესაქმნელად
+
+zod - სქემის შესაქმნელად, რომელიც გამოყენებულია ფორმის ვალიდაციისთვის
+
+zustand - სტეიტ მენეჯმენტისთვის
+
+tailwindcss - სტილების დასამატებლად
+
+devtools - husky, prettier, eslint
+
+## header
+
+header-ში დამატებულია თბს ფეის ლოგოს და ღილაკი მთვარი. მთავარს ფუნქციონალი არ აქვს
+
+## Introduction Component
+
+პირველი ქარდი რომელზეც დაჭერის შემთხვევაში იხსნება ფორმა. მასზე დამატებულია ფრეიმერ მოუშენის გამოყენებით პატარა ანიმაცია.
+
+## Form
+
+ფორმის კომპონენტის შესაქმნელად გამოყენებულია react-hook-form. დაიმპორტებულია კონტექსტი იმისთვის რომ შვილი კომპონენტებისთვის ფორმის მნიშვნელობები ყოფილიყო ხილული.
+
+ფორმას აქვს პროგრესის მაჩვენებელი რომელიც შედგება სამი ეტაპისგან და თითოეული ეტაპის გავლა რეინჯს ზრდის შესაბამისი პროცენტებით
+
+ინფუთებისთვის შექმნილია ცალკე კომპონენტი
+თითოეულ ინფუთს აქვს საკუთარი ვალიდაციის ტექსტი. (schema.ts)
+ფორმას აქვს ნავიგაციის ღილაკები - შემდეგი და უკან. შემდეგზე დაჭერის დროს თუ ინფუთი ფოლო არაა, ფორმა გადადის შემდეგ ეტაპზე, ხოლო თუ ბოლო კითხვაა მნიშვნელობები იგზავნება, სიმბოლურად ილოგება კონსოლში და ფორმაც ბოლო, წარმატების შეტყობინების, კომპონენტზე გადადის.
+უკან ღილაკზე დაჭერის შემთხვევაში ფორმა გადადის წინა ეტაპზე. წინა ეტაპზე გადმოსვლისას ასევე იკლებს პროგრესის რეინჯი. უკან ღილაკი ჩანს ფორმის მხოლოდ მეორე და მესამე ეტაპზე.
+
+## Zustand
+
+ზასტანდი გამოყენებულია სთეით მენეჯმენტისთვის. ყველა ფუნქცია და ყველა სტეითი რომელიც მეორდებოდა შეტანილია მასში.
+
+## Success Message
+
+საბოლოო კომპონენტი რომელზეც ჩანს ტექსტი, მომხმარებლის მიერ შეყვანილი ელ-ფოსტა და სახელი. ასევე არის ღილაკი რომლზეც დაჭერის შემთხვევაში ფორმა იწყება თავიდან და მნიშვნელობებიც იშლება.
+
+აპლიკაციაში არ არის გამოყენებული როუტერი და ფორმში გადამისამართება ხდება სთეითის გამოყენებით.
+გვერდის რეფრეშის დროს ფორმა იწყება თავიდან
