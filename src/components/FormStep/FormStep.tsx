@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
 import PasswordInput from '../Password'
+import Rules from '../Rules'
 import FormNavigation from '../FormNavigation'
+
+// This component is used within a form and has different behavior when the input type is "password".
+// In addition to the standard input handling, it displays password rules to guide the user in creating a strong password.
+// The PasswordInput component is separated to encapsulate the password toggle functionality, keeping the component well-structured.
+// This approach enhances maintainability by preventing the main form step component from becoming too large and complex.
 
 type InputName = 'name' | 'email' | 'password' | string
 
@@ -34,6 +40,12 @@ const FormStep: React.FC<FormStepProps> = ({
 
   return (
     <div>
+      {password && (
+        <Rules
+          description="თქვენი უსაფრთხოებისთვის შეიყვანეთ პაროლი რომელიც შეიცავს:"
+          rules={['ლათინურ ასოებს', 'რიცხვებს', 'სიმბოლოებს']}
+        />
+      )}
       <label
         htmlFor={name}
         className="block font-medium mb-2 text-sm text-slate-600"

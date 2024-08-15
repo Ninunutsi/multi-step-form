@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useFormStore } from "../../store";
-import Button from "../Button";
-import { useFormContext } from "react-hook-form";
+import React, { useState } from 'react'
+import { useFormStore } from '../../store'
+import Button from '../Button'
+import { useFormContext } from 'react-hook-form'
 
 interface FormNavigationProps {
-  isLastStep?: boolean;
-  name: any;
+  isLastStep?: boolean
+  name: any
 }
 
 const FormNavigation: React.FC<FormNavigationProps> = ({
@@ -16,26 +16,27 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
     trigger,
     getValues,
     formState: { isSubmitting },
-  } = useFormContext();
+  } = useFormContext()
   const { handleNext, handlePrev, step, handleSubmitForm, setStep } =
-    useFormStore();
+    useFormStore()
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
 
+  //checks input, on last step submits data and logs it in console
   const handleClick = async () => {
-    setIsLoading(true);
-    const isValid = await trigger(name);
+    setIsLoading(true)
+    const isValid = await trigger(name)
     if (isValid) {
       if (isLastStep) {
-        const formData = getValues();
-        await handleSubmitForm(formData);
-        setStep(4);
+        const formData = getValues()
+        await handleSubmitForm(formData)
+        setStep(4)
       } else {
-        handleNext(trigger, name);
+        handleNext(trigger, name)
       }
     }
-    setIsLoading(false);
-  };
+    setIsLoading(false)
+  }
 
   return (
     <div className="mt-4 flex justify-end">
@@ -50,7 +51,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
       )}
       <Button
         onClick={handleClick}
-        type={isLastStep ? "submit" : "button"}
+        type={isLastStep ? 'submit' : 'button'}
         disabled={isSubmitting || isLoading}
         className="bg-sky-600 hover:bg-sky-800 focus:ring-blue-300 flex items-center text-white"
       >
@@ -74,13 +75,13 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
             </svg>
           </div>
         ) : isLastStep ? (
-          "რეგისტრაცია"
+          'რეგისტრაცია'
         ) : (
-          "შემდეგი"
+          'შემდეგი'
         )}
       </Button>
     </div>
-  );
-};
+  )
+}
 
-export default FormNavigation;
+export default FormNavigation

@@ -1,4 +1,6 @@
+import { useFormStore } from '../../store'
 import AnimatedWrapper from '../Animation'
+import Button from '../Button'
 
 const Introduction = () => {
   return (
@@ -8,12 +10,12 @@ const Introduction = () => {
         <p className="text-lg text-gray-700 mb-6 text-center">
           პლატფორმაზე რეგისტრაციისთვის გთხოვთ შეიყვანოთ თქვენი მონაცემები
         </p>
-        <button
-          type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 my-2 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        <Button
+          className="bg-transparent border border-sky-500 text-sky-500 hover:bg-sky-50"
+          onClick={() => useFormStore.getState().setStep(1)}
         >
           დაწყება
-        </button>
+        </Button>
       </div>
     </AnimatedWrapper>
   )
