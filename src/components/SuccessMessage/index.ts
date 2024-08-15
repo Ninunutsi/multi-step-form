@@ -1,1 +1,1 @@
-export { default } from "./SuccessMessage";
+export { default } from './SuccessMessage'

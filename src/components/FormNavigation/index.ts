@@ -1,1 +1,1 @@
-export { default } from "./FormNavigation";
+export { default } from './FormNavigation'
