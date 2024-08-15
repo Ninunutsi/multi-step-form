@@ -11,6 +11,7 @@ interface SuccessMessageI {
 
 const SuccessMessage: React.FC<SuccessMessageI> = ({ email, name }) => {
   const { reset } = useFormContext()
+  // this reset form values and goes to first card component
   const resetForm = () => {
     useFormStore.getState().setStep(0)
     reset()
