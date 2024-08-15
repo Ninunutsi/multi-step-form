@@ -60,7 +60,6 @@ const FormStep: React.FC<FormStepProps> = ({
           {String(errors[nameFormStep]?.message)}
         </div>
       )}
-      <FormNavigation isLastStep={isLastStep} nameNavigation={nameFormStep} />
     </div>
   )
 }

@@ -6,7 +6,8 @@ import FormStep from '../FormStep'
 import { useFormStore } from '../../store'
 import Introduction from '../Introduction'
 import SuccessMessage from '../SuccessMessage'
-import { FormFieldsI } from '../../types'
+import { FormFieldsI, FormSteps } from '../../types'
+import FormNavigation from '../FormNavigation'
 
 const steps = [
   { label: 'სახელი:', name: 'name', isPassword: false },
@@ -23,7 +24,9 @@ const Form = () => {
   const { getValues } = methods
 
   const step = useFormStore((state) => state.step)
-  if (step == 0) return <Introduction />
+  const isLastStep = step === steps.length
+
+  if (step === FormSteps.Introduction) return <Introduction />
   return (
     <FormProvider {...methods}>
       <div className="card-base">
@@ -32,18 +35,24 @@ const Form = () => {
           {step <= steps.length &&
             steps.map(({ label, name, isPassword, isLastStep }, index) =>
               step === index + 1 ? (
-                <FormStep
-                  key={index}
-                  label={label}
-                  nameFormStep={name}
-                  password={isPassword}
-                  isLastStep={isLastStep}
-                  step={step}
-                />
+                <>
+                  <FormStep
+                    key={index}
+                    label={label}
+                    nameFormStep={name}
+                    password={isPassword}
+                    isLastStep={isLastStep}
+                    step={step}
+                  />
+                  <FormNavigation
+                    isLastStep={isLastStep}
+                    nameNavigation={name}
+                  />
+                </>
               ) : null,
             )}
         </form>
-        {step === 4 && (
+        {step === FormSteps.Success && (
           <SuccessMessage
             email={getValues().email}
             userName={getValues().name}

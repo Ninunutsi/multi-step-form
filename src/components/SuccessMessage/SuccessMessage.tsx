@@ -3,13 +3,13 @@ import Success from '../../assets/svg/Success'
 import Button from '../Button'
 import { useFormContext } from 'react-hook-form'
 import { useFormStore } from '../../store'
-import { SuccessMessageI } from '../../types'
+import { FormSteps, SuccessMessageI } from '../../types'
 
 const SuccessMessage: React.FC<SuccessMessageI> = ({ email, userName }) => {
   const { reset } = useFormContext()
   // this reset form values and goes to first card component
   const resetForm = () => {
-    useFormStore.getState().setStep(0)
+    useFormStore.getState().setStep(FormSteps.Introduction)
     reset()
   }
   return (

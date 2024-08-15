@@ -3,7 +3,7 @@ import { useFormStore } from '../../store'
 import Button from '../Button'
 import { useFormContext } from 'react-hook-form'
 import Loading from '../../assets/svg/Loading'
-import { FormNavigationProps } from '../../types'
+import { FormNavigationProps, FormSteps } from '../../types'
 
 const FormNavigation: React.FC<FormNavigationProps> = ({
   isLastStep,
@@ -24,7 +24,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
         const formData = getValues()
         const { email, name, password } = formData
         await handleSubmitForm({ email, password, name })
-        setStep(4)
+        setStep(FormSteps.Success)
       } else {
         handleNext(trigger, nameNavigation)
       }
@@ -34,7 +34,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
 
   return (
     <div className="mt-4 flex justify-end">
-      {step > 1 && (
+      {step > FormSteps.Name && (
         <Button
           onClick={handlePrev}
           className="bg-slate-400 hover:bg-gray-700 focus:ring-gray-300 text-white"
@@ -47,7 +47,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
         onClick={handleClick}
         type={isLastStep ? 'submit' : 'button'}
         disabled={isLoading}
-        className="bg-sky-600 hover:bg-sky-800 focus:ring-blue-300 flex items-center text-white"
+        className="bg-accent hover:bg-sky-800 focus:ring-blue-300 flex items-center text-white"
       >
         {isLoading ? (
           <div role=" flex">

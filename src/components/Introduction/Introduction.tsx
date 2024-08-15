@@ -1,4 +1,5 @@
 import { useFormStore } from '../../store'
+import { FormSteps } from '../../types'
 import AnimatedWrapper from '../Animation'
 import Button from '../Button'
 
@@ -14,7 +15,7 @@ const Introduction = () => {
         </p>
         <Button
           className="bg-transparent border border-light_accent text-light_accent hover:bg-sky-50"
-          onClick={() => useFormStore.getState().setStep(1)}
+          onClick={() => useFormStore.getState().setStep(FormSteps.Name)}
         >
           დაწყება
         </Button>

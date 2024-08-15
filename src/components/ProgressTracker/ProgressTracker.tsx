@@ -1,35 +1,32 @@
 import React from 'react'
+import { ProgressTrackerProps } from '../../types'
 
-interface ProgressTrackerProps {
-  step: number
-}
+const stepLabels = [
+  'შეიყვანეთ თქვენი სახელი',
+  'შეიყვანეთ პაროლი',
+  'შეიყვანეთ ელ-ფოსტა',
+]
 
 const ProgressTracker: React.FC<ProgressTrackerProps> = ({ step }) => {
-  const progressPercentage = Math.round((step / 3) * 100) + '%'
-  if (step > 3) return null
+  const totalSteps = stepLabels.length
+  const isValidStep = step <= totalSteps
+  const progressPercentage = isValidStep
+    ? Math.round((step / totalSteps) * 100) + '%'
+    : '0%'
+
+  if (!isValidStep) return null
+
   return (
     <div>
       <div className="border-b-2 py-2">
         <div className="uppercase tracking-wide text-xs font-bold text-gray-500 mb-1 leading-tight">
-          ეტაპი: {step}/3
+          ეტაპი: {step}/{totalSteps}
         </div>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
           <div className="flex-1">
-            {step === 1 && (
-              <div className="text-lg font-bold text-dark leading-tight my-1">
-                შეიყვანეთ თქვენი სახელი
-              </div>
-            )}
-            {step === 2 && (
-              <div className="text-lg font-bold text-dark leading-tight">
-                შეიყვანეთ პაროლი
-              </div>
-            )}
-            {step === 3 && (
-              <div className="text-lg font-bold text-dark leading-tight">
-                შეიყვანეთ ელ-ფოსტა
-              </div>
-            )}
+            <div className="text-lg font-bold text-dark leading-tight my-1">
+              {stepLabels[step - 1]}
+            </div>
           </div>
 
           <div className="flex items-center md:w-64">
@@ -40,7 +37,7 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ step }) => {
                   width: progressPercentage,
                   transition: 'width 1s ease',
                 }}
-              ></div>
+              />
             </div>
             <div className="text-xs w-10 text-secondary">
               {progressPercentage}

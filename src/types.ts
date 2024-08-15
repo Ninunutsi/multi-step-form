@@ -1,6 +1,14 @@
 import { z } from 'zod'
 import { schema } from './schema/schema'
 
+export enum FormSteps {
+  Introduction = 0,
+  Name = 1,
+  Password = 2,
+  Email = 3,
+  Success = 4,
+}
+
 export interface FormNavigationProps {
   isLastStep?: boolean
   nameNavigation: string
@@ -22,3 +30,7 @@ export interface SuccessMessageI {
 }
 
 export type FormFieldsI = z.infer<typeof schema>
+
+export interface ProgressTrackerProps {
+  step: number
+}
