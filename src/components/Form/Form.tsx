@@ -6,6 +6,7 @@ import ProgressTracker from '../ProgressTracker'
 import FormStep from '../FormStep'
 import { useFormStore } from '../../store'
 import Introduction from '../Introduction'
+import SuccessMessage from '../SuccessMessage'
 
 const steps = [
   { label: 'სახელი:', name: 'name', isPassword: false },
@@ -21,16 +22,15 @@ const Form = () => {
     resolver: zodResolver(schema),
   })
 
+  const { getValues } = methods
+
   const step = useFormStore((state) => state.step)
   if (step == 0) return <Introduction />
   return (
     <FormProvider {...methods}>
-      <div className="sm:w-90 md:w-[70vw] lg:w-[600px] mx-auto  p-4 bg-white border border-white rounded-lg shadow-sm my-12">
+      <div className="sm:w-90 md:w-[70vw] lg:w-[600px] mx-auto p-2 bg-white border border-white rounded-lg shadow-sm my-12  min-h-[150px]">
         <ProgressTracker step={step} />
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="mt-6 min-h-[150px]"
-        >
+        <form onSubmit={(e) => e.preventDefault()} className="mt-6">
           {step <= steps.length &&
             steps.map(({ label, name, isPassword, isLastStep }, index) =>
               step === index + 1 ? (
@@ -45,6 +45,9 @@ const Form = () => {
               ) : null,
             )}
         </form>
+        {step === 4 && (
+          <SuccessMessage email={getValues().email} name={getValues().name} />
+        )}
       </div>
     </FormProvider>
   )
