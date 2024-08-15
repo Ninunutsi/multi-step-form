@@ -1,10 +1,5 @@
 import { create } from 'zustand'
-
-type FormFieldsI = {
-  username: string
-  password: string
-  email: string
-}
+import { FormFieldsI } from './types'
 
 type FormType = {
   step: number

@@ -3,7 +3,7 @@ import { useFormStore } from '../../store'
 import Button from '../Button'
 import { useFormContext } from 'react-hook-form'
 import Loading from '../../assets/svg/Loading'
-import { FormNavigationProps, FormSteps } from '../../types'
+import { FormFieldsI, FormNavigationProps, FormSteps } from '../../types'
 
 const FormNavigation: React.FC<FormNavigationProps> = ({
   isLastStep,
@@ -21,7 +21,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
     const isValid = await trigger(nameNavigation)
     if (isValid) {
       if (isLastStep) {
-        const formData = getValues()
+        const formData = getValues() as FormFieldsI
         const { email, name, password } = formData
         await handleSubmitForm({ email, password, name })
         setStep(FormSteps.Success)
