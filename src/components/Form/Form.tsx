@@ -3,6 +3,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { schema } from '../../schema/schema'
 import ProgressTracker from '../ProgressTracker'
+import FormStep from '../FormStep'
+import { useFormStore } from '../../store'
 
 const steps = [
   { label: 'სახელი:', name: 'name', isPassword: false },
@@ -18,34 +20,30 @@ const Form = () => {
     resolver: zodResolver(schema),
   })
   const {
-    register,
     formState: { errors },
   } = methods
+  const step = useFormStore((state) => state.step)
   return (
     <FormProvider {...methods}>
       <div className="sm:w-90 md:w-[70vw] lg:w-[600px] mx-auto  p-4 bg-white border border-white rounded-lg shadow-sm my-12">
         <ProgressTracker step={1} />
-
         <form
           onSubmit={(e) => e.preventDefault()}
           className="mt-6 min-h-[150px]"
         >
-          {steps.map(({ label, name }, index) => (
-            <div key={index}>
-              <label
-                htmlFor={name}
-                className="block font-medium mb-2 text-sm text-slate-600"
-              >
-                {label}
-              </label>
-              <input
-                type="text"
-                id={name}
-                {...register(name)}
-                className="border rounded p-2 w-full"
-              />
-            </div>
-          ))}
+          {step <= steps.length &&
+            steps.map(({ label, name, isPassword, isLastStep }, index) =>
+              step === index + 1 ? (
+                <FormStep
+                  key={index}
+                  label={label}
+                  name={name}
+                  password={isPassword}
+                  isLastStep={isLastStep}
+                  step={step}
+                />
+              ) : null,
+            )}
 
           {errors.root && (
             <div className="text-red-500">{errors.root.message}</div>
