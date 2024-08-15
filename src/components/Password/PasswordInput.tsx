@@ -25,7 +25,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ id, register }) => {
       <button
         type="button"
         onClick={togglePasswordVisibility}
-        className="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600"
+        className="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-accent"
       >
         <EyeIcon isPasswordVisible={isPasswordVisible} />
       </button>

@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card-base {
+  @apply w-[95%] sm:w-[80vw] md:w-[70vw] lg:w-[600px] mx-auto p-2 bg-white border border-white rounded-lg shadow-sm mt-20 sm:mt-12 min-h-[150px];
+}

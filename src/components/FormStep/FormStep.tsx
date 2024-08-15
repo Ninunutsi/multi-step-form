@@ -3,25 +3,16 @@ import { useFormContext } from 'react-hook-form'
 import PasswordInput from '../Password'
 import Rules from '../Rules'
 import FormNavigation from '../FormNavigation'
+import { FormStepProps } from '../../types'
 
 // This component is used within a form and has different behavior when the input type is "password".
 // In addition to the standard input handling, it displays password rules to guide the user in creating a strong password.
 // The PasswordInput component is separated to encapsulate the password toggle functionality, keeping the component well-structured.
 // This approach enhances maintainability by preventing the main form step component from becoming too large and complex.
 
-type InputName = 'name' | 'email' | 'password' | string
-
-interface FormStepProps {
-  label: string
-  name: InputName
-  isLastStep?: boolean
-  step?: any
-  password?: boolean
-}
-
 const FormStep: React.FC<FormStepProps> = ({
   label,
-  name,
+  nameFormStep,
   isLastStep,
   step,
   password,
@@ -47,29 +38,29 @@ const FormStep: React.FC<FormStepProps> = ({
         />
       )}
       <label
-        htmlFor={name}
+        htmlFor={nameFormStep}
         className="block font-medium mb-2 text-sm text-slate-600"
       >
         {label}
       </label>
 
       {password ? (
-        <PasswordInput id={name} register={register(name)} />
+        <PasswordInput id={nameFormStep} register={register(nameFormStep)} />
       ) : (
         <input
           type="text"
-          id={name}
-          {...register(name)}
+          id={nameFormStep}
+          {...register(nameFormStep)}
           className="border rounded p-2 w-full"
         />
       )}
 
-      {errors[name]?.message && (
+      {errors[nameFormStep]?.message && (
         <div className="text-red-500 mt-1 text-xs">
-          {String(errors[name]?.message)}
+          {String(errors[nameFormStep]?.message)}
         </div>
       )}
-      <FormNavigation isLastStep={isLastStep} name={name} />
+      <FormNavigation isLastStep={isLastStep} nameNavigation={nameFormStep} />
     </div>
   )
 }

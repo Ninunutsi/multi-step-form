@@ -3,7 +3,7 @@ import logo from '../../assets/tbc-logo.svg'
 const Header = () => {
   return (
     <header className="bg-white text-slate-600 p-3 w-full">
-      <div className="container mx-auto flex justify-between md:justify-start items-center">
+      <div className="container mx-auto flex justify-between md:justify-start items-center max-w-[1200px]">
         <div className="flex items-center">
           <h1>
             <img src={logo} alt="TBC logo" className="w-28 md:w-32" />
